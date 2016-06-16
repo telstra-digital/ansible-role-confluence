@@ -1,0 +1,6 @@
+---
+#- name: download confluence
+#  get_url: url="https://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-{{ confluence_version }}.tar.gz" dest="/var/tmp"
+
+- name: extract confluence archive
+  unarchive: src="https://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-{{ confluence_version }}.tar.gz" dest={{ confluence_install_dir }}/{{ confluence_version }} copy=no

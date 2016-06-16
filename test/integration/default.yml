@@ -1,0 +1,8 @@
+---
+- hosts: test-kitchen
+  pre_tasks:
+    - service:
+        name=firewalld
+        state=stopped
+  roles:
+    -  ansible-confluence
