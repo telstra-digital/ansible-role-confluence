@@ -34,24 +34,26 @@ Apache 2.0
 
 ## Run the tests
 
-This role includes Test Kitchen tests that demonstrate a Confluence installation.
+This role includes Molecule tests that demonstrate a Confluence installation.
 
 To run the tests:
 
 Make sure you have the following prerequisites installed:
 
-* VirtualBox
-* Vagrant
-* Ruby Gems
-* Ruby (tested on 2.0.0p481).
+* Docker
+* virtualenvwrapper
+
+At the moment you will have to build and install the development version of
+`molecule` to get Docker support.
 
 ```
-$ gem install bundler
-$ bundle install
+$ mkvirtualenv molecule
+$ git clone https://github.com/metacloud/molecule.git
+$ pip install -U -e molecule/
 ```
 
-To set up and test the master:
+To set up and test the role:
 
 ```
-$ bundle exec kitchen TODO
+$ molecule test
 ```
