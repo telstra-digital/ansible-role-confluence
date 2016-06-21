@@ -1,0 +1,11 @@
+---
+ansible:
+  playbook: playbook.yml
+
+docker:
+  containers:
+  - name: ansible-confluence-01
+    ansible_groups:
+      - group1
+    image: 913fdaa855aa
+    image_version: latest

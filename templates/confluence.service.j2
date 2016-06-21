@@ -1,0 +1,13 @@
+[Unit]
+Description=Confluence Team Collaboration Software
+After=network.target
+
+[Service]
+Type=forking
+User=confluence
+PIDFile=/opt/atlassian/confluence/{{ confluence_version }}/work/catalina.pid
+ExecStart=/opt/atlassian/confluence/{{ confluence_version }}/bin/start-confluence.sh
+ExecStop=/opt/atlassian/confluence/{{ confluence_version }}/bin/stop-confluence.sh
+
+[Install]
+WantedBy=multi-user.target
