@@ -2,10 +2,36 @@
 ansible:
   playbook: playbook.yml
 
-docker:
-  containers:
-  - name: ansible-confluence-01
+vagrant:
+  raw_config_args:
+    - "proxy.http = 'http://172.28.128.1:3128/'"
+    - "proxy.https = 'http://172.28.128.1:3128/'"
+
+  platforms:
+    - name: centos/7
+      box: centos/7
+#      box_url: https://vagrantcloud.com/ubuntu/boxes/trusty64/versions/14.04/providers/virtualbox.box
+
+  providers:
+    - name: virtualbox
+      type: virtualbox
+      options:
+        memory: 512
+        cpus: 2
+
+  instances:
+  - name: confluence
     ansible_groups:
-      - group1
-    image: 913fdaa855aa
-    image_version: latest
+      - confluence
+    interfaces:
+      - network_name: private_network
+        type: dhcp
+        auto_config: true
+
+#docker:
+#  containers:
+#  - name: test-container-01
+#    ansible_groups:
+#      - group1
+#    image: 913fdaa855aa
+#    image_version: latest
