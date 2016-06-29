@@ -1,3 +1,2 @@
-.kitchen/
-.kitchen.local.yml
+.molecule
 *.sw*

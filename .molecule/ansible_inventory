@@ -1,4 +1,0 @@
-ansible-confluence-01 connection=docker
-
-[group1]
-ansible-confluence-01
