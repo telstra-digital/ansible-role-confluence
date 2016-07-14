@@ -11,7 +11,7 @@ vagrant:
   platforms:
     - name: centos/7
       box: centos/7
-#      box_url: https://vagrantcloud.com/ubuntu/boxes/trusty64/versions/14.04/providers/virtualbox.box
+      box_version: 1605.01
 
   providers:
     - name: virtualbox
@@ -28,11 +28,3 @@ vagrant:
       - network_name: private_network
         type: dhcp
         auto_config: true
-
-#docker:
-#  containers:
-#  - name: test-container-01
-#    ansible_groups:
-#      - group1
-#    image: 913fdaa855aa
-#    image_version: latest
