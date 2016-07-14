@@ -1,6 +1,7 @@
 ---
 ansible:
   playbook: playbook.yml
+  requirements_file: requirements.yml
 
 vagrant:
   raw_config_args:
