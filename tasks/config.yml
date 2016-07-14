@@ -15,6 +15,9 @@
     group: root
     mode:  0444
 
+- name: config > systemd directory
+  file: path=/etc/systemd/system state=directory
+
 - name: config > systemd manifest
   template:
     src:   confluence.service.j2
@@ -22,4 +25,3 @@
     owner: root
     group: root
     mode:  0444
-
