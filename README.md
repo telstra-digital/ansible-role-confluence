@@ -40,11 +40,8 @@ To run the tests:
 
 Make sure you have the following prerequisites installed:
 
-* Docker
+* Vagrant
 * virtualenvwrapper
-
-At the moment you will have to build and install the development version of
-`molecule` to get Docker support.
 
 ```
 $ mkvirtualenv molecule
