@@ -1,5 +1,9 @@
 ---
 - hosts: confluence
+  become: True
+  pre_tasks:
+    - yum: name=libselinux-python state=present
+
   roles:
     - role: geerlingguy.java
       when: "ansible_os_family == 'RedHat'"

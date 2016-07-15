@@ -17,7 +17,7 @@ vagrant:
     - name: virtualbox
       type: virtualbox
       options:
-        memory: 512
+        memory: 1024
         cpus: 2
 
   instances:

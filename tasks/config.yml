@@ -3,16 +3,16 @@
   template:
     src:   confluence-init.properties.j2
     dest:  "{{ confluence_install_dir }}/{{ confluence_version }}/confluence/WEB-INF/classes/confluence-init.properties"
-    owner: root
-    group: root
+    owner: "{{ confluence_user }}"
+    group: "{{ confluence_group }}"
     mode:  0444
 
 - name: config > server.xml
   template:
     src:   server.xml.j2
     dest:  "{{ confluence_install_dir }}/{{ confluence_version }}/conf/server.xml"
-    owner: root
-    group: root
+    owner: "{{ confluence_user }}"
+    group: "{{ confluence_group }}"
     mode:  0444
 
 - name: config > systemd directory
