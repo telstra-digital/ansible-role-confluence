@@ -1,9 +1,47 @@
 ---
-- name: download confluence
-  get_url: url={{ confluence_download_base }}/atlassian-confluence-{{ confluence_version }}.tar.gz dest="/var/tmp"
+- name: install > create confluence group
+  group:
+    state: present
+    name: "{{ confluence_group }}"
+    gid: "{{ confluence_gid }}"
 
-- name: create confluence directory
-  file: path={{ confluence_install_dir }}/{{ confluence_version }} state=directory mode=0755
+- name: install > create confluence user
+  user:
+    state: present
+    name: "{{ confluence_user }}"
+    uid: "{{ confluence_uid }}"
+    group: "{{ confluence_group }}"
+    comment: "Confluence User"
+    shell: /sbin/nologin
 
+- name: install > download confluence
+  get_url:
+    url: "{{ confluence_download_base }}/atlassian-confluence-{{ confluence_version }}.tar.gz"
+    dest: /var/tmp
+
+- name: install > create confluence directory
+  file:
+    path: "{{ confluence_install_dir }}/{{ confluence_version }}"
+    state: directory
+    mode: 0755
+
+# NOTE: This uses tar directly so that we can strip the leading path
 - name: extract confluence archive
-  command: tar --strip-components=1 -zxvf /var/tmp/atlassian-confluence-{{ confluence_version }}.tar.gz chdir={{ confluence_install_dir }}/{{ confluence_version }}
+  command: tar --strip-components=1 -zxvf /var/tmp/atlassian-confluence-{{ confluence_version }}.tar.gz
+  args:
+    chdir: "{{ confluence_install_dir }}/{{ confluence_version }}"
+    creates: "{{ confluence_install_dir }}/{{ confluence_version }}/LICENSE"
+
+- name: install > set directory permissions
+  file:
+    path: "{{ confluence_install_dir }}/{{ confluence_version }}"
+    owner: "{{ confluence_user }}"
+    group: "{{ confluence_group }}"
+    recurse: True
+
+- name: install > create confluence home directory
+  file:
+    path: "{{ confluence_home }}"
+    state: directory
+    owner: "{{ confluence_user }}"
+    group: "{{ confluence_group }}"
