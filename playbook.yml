@@ -5,8 +5,10 @@
     - yum: name=libselinux-python state=present
 
   roles:
-    - role: geerlingguy.java
-      when: "ansible_os_family == 'RedHat'"
-      java_packages:
-        - java-1.8.0-openjdk
+    - role: galaxyprojectdotorg.postgresql
+    - role: williamyeh.oracle-java
     - role: ansible-confluence
+
+  vars:
+    java_version: 8
+    java_subversion: 92
