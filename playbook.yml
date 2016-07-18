@@ -1,6 +1,6 @@
 ---
 - hosts: confluence
-  become: True
+  become: true
   pre_tasks:
     - yum: name=libselinux-python state=present
 
@@ -9,6 +9,25 @@
     - role: williamyeh.oracle-java
     - role: ansible-confluence
 
+  tasks:
+    - yum: name=python-psycopg2 state=present
+    - name: creating db user '{{ confluence_db_user }}'
+      postgresql_user:
+        name: "{{ confluence_db_user }}"
+        password: "{{ confluence_db_pass }}"
+        encrypted: yes
+        role_attr_flags: "CREATEROLE,CREATEDB"
+      become_user: postgres
+
+    - name: creating db '{{ confluence_db }}'
+      postgresql_db:
+        name: "{{ confluence_db }}"
+        owner: "{{ confluence_db_user }}"
+      become_user: postgres
+
   vars:
     java_version: 8
     java_subversion: 92
+    confluence_db: "confluence"
+    confluence_db_user: "confluence"
+    confluence_db_pass: "confluencepass"
