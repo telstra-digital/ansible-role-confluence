@@ -2,3 +2,6 @@
 .vagrant/
 *.sw*
 *.retry
+.cache/
+__pycache__/
+.ropeproject/
