@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-set :backend, :exec
-
 context 'install' do
   describe group('confluence') do
     it { should exist }
@@ -45,13 +43,11 @@ context 'server started' do
 end
 
 context 'service' do
-  describe service('named') do
+  describe service('confluence') do
     it { should be_running }
   end
 
-  [8090].each do |port|
-    describe port(port) do
-      it { should be_listening.with('tcp') }
-    end
+  describe port(8090) do
+    it { should be_listening }
   end
 end
