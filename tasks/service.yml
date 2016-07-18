@@ -1,0 +1,3 @@
+---
+- service: name=confluence state=started enabled=yes
+  when: confluence_manage_service
