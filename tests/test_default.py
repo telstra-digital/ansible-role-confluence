@@ -3,3 +3,9 @@ def test_confluence_user(User):
 
     assert user.exists
     assert user.group == "confluence"
+
+
+def test_confluence_group(Group):
+    group = Group("confluence")
+
+    assert group.exists
