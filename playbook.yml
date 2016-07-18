@@ -7,7 +7,7 @@
   roles:
     - role: galaxyprojectdotorg.postgresql
     - role: williamyeh.oracle-java
-    - role: ansible-confluence
+    - role: ansible-role-confluence
 
   tasks:
     - yum: name=python-psycopg2 state=present
