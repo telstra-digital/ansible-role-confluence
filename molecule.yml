@@ -7,6 +7,7 @@ vagrant:
   raw_config_args:
     - "proxy.http = 'http://172.28.128.1:3128/'"
     - "proxy.https = 'http://172.28.128.1:3128/'"
+    - "proxy.no_proxy = '172.28.128.1'"
 
   platforms:
     - name: centos/7

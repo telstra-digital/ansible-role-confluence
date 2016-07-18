@@ -3,7 +3,7 @@ confluence_version: 5.9.12
 confluence_install_dir: /opt/atlassian/confluence
 confluence_home: /var/atlassian/application-data/confluence
 #confluence_download_base: https://www.atlassian.com/software/confluence/downloads/binary
-confluence_download_base: http://147.10.7.126:8080/
+confluence_download_base: http://172.28.128.1:8080/
 confluence_user: confluence
 confluence_group: confluence
 confluence_uid: 33000
