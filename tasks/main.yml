@@ -1,4 +1,8 @@
 ---
+- name: Check for OS support
+  fail: msg="OS is not supported"
+  when: ansible_os_family != 'RedHat'
+
 - include: install.yml
 - include: config.yml
 - include: service.yml
