@@ -13,6 +13,7 @@ Installs and configures an Atlassian Confluence Wiki instance.
 ## Role Handlers
 
 * confluence
+
 Service state is expected to be controlled by a playbook.
 
 ## Role Variables
