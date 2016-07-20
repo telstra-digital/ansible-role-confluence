@@ -3,20 +3,22 @@
   become: true
   pre_tasks:
     - yum: name=libselinux-python state=present
+    - command: 'setenforce 0'
 
   roles:
     - role: galaxyprojectdotorg.postgresql
     - role: williamyeh.oracle-java
+    - role: geerlingguy.haproxy
     - role: ansible-role-confluence
 
   tasks:
     - yum: name=python-psycopg2 state=present
+
     - name: creating db user '{{ confluence_db_user }}'
       postgresql_user:
         name: "{{ confluence_db_user }}"
         password: "{{ confluence_db_pass }}"
         encrypted: yes
-        role_attr_flags: "CREATEROLE,CREATEDB"
       become_user: postgres
 
     - name: creating db '{{ confluence_db }}'
@@ -28,6 +30,17 @@
   vars:
     java_version: 8
     java_subversion: 92
+    # NOTE: For speedy testing, download jdk-8u92-linux-x64.rpm to files/
+    java_download_from_oracle: false
     confluence_db: "confluence"
     confluence_db_user: "confluence"
     confluence_db_pass: "confluencepass"
+    confluence_manage_service: true
+    haproxy_backend_servers:
+      - name: confluence
+        address: 127.0.0.1:8090
+    postgresql_pg_hba_local_ipv4: ''
+    postgresql_pg_hba_local_ipv6: ''
+    postgresql_pg_hba_conf:
+      - 'host    all             all             127.0.0.1/32            md5'
+      - 'host    all             all             ::1/128                 md5'
