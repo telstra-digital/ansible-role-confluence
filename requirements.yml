@@ -5,3 +5,7 @@
 - src: https://github.com/galaxyproject/ansible-postgresql
   version: master
   name: galaxyprojectdotorg.postgresql
+
+- src: https://github.com/geerlingguy/ansible-role-haproxy
+  version: 1.0.2
+  name: geerlingguy.haproxy
