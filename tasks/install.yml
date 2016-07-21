@@ -17,7 +17,7 @@
 - name: install > download confluence
   get_url:
     url: "{{ confluence_download_base }}/atlassian-confluence-{{ confluence_version }}.tar.gz"
-    dest: /var/tmp
+    dest: /var/tmp/atlassian-confluence-{{ confluence_version }}.tar.gz
 
 - name: install > create confluence directory
   file:
