@@ -13,7 +13,7 @@
   roles:
     - role: galaxyprojectdotorg.postgresql
     - role: williamyeh.oracle-java
-    - role: geerlingguy.haproxy
+    - { role: uoi-io.haproxy, tags: ['haproxy'] }
     - role: ansible-role-confluence
 
   tasks:
@@ -41,11 +41,25 @@
     confluence_db_user: "confluence"
     confluence_db_pass: "confluencepass"
     confluence_manage_service: true
-    haproxy_backend_servers:
-      - name: confluence
-        address: 127.0.0.1:8090
     postgresql_pg_hba_local_ipv4: ''
     postgresql_pg_hba_local_ipv6: ''
     postgresql_pg_hba_conf:
       - 'host    all             all             127.0.0.1/32            md5'
       - 'host    all             all             ::1/128                 md5'
+    haproxy_firewalld: false
+    haproxy_selinux: false
+    haproxy_stats_uri: /haproxy?stats
+    haproxy_stats_user: "admin"
+    haproxy_stats_password: "admin"
+    haproxy_listen:
+      - confluence:
+          mode: http
+          description: Confluence Wiki
+          balance: roundrobin
+          binds:
+            - "*:80"
+          timeouts:
+            - server 2m
+            - client 2m
+          servers:
+          - confluence 127.0.0.1:8090 check
