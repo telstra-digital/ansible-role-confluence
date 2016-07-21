@@ -2,8 +2,13 @@
 - hosts: confluence
   become: true
   pre_tasks:
-    - yum: name=libselinux-python state=present
+    # Disable SELinux
     - command: 'setenforce 0'
+    # Install packages for testing which don't exist in the Vagrant box
+    - yum: name={{ item }} state=present
+      with_items:
+        - libselinux-python
+        - net-tools
 
   roles:
     - role: galaxyprojectdotorg.postgresql
