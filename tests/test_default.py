@@ -43,3 +43,8 @@ def test_service_running(Service):
 def test_service_listening(Socket):
     socket = Socket('tcp://:::8090')
     assert socket.is_listening
+
+
+def test_java_package_version(Package):
+    package = Package('jdk1.80_101')
+    assert package.is_installed

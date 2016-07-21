@@ -34,7 +34,7 @@
 
   vars:
     java_version: 8
-    java_subversion: 92
+    java_subversion: 101
     # NOTE: For speedy testing, download jdk-8u92-linux-x64.rpm to files/
     java_download_from_oracle: false
     confluence_db: "confluence"
