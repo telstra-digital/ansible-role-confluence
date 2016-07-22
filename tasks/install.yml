@@ -1,19 +1,4 @@
 ---
-- name: install > create confluence group
-  group:
-    state: present
-    name: "{{ confluence_group }}"
-    gid: "{{ confluence_gid }}"
-
-- name: install > create confluence user
-  user:
-    state: present
-    name: "{{ confluence_user }}"
-    uid: "{{ confluence_uid }}"
-    group: "{{ confluence_group }}"
-    comment: "Confluence User"
-    shell: /sbin/nologin
-
 - name: install > download confluence
   get_url:
     url: "{{ confluence_download_base }}/atlassian-confluence-{{ confluence_version }}.tar.gz"

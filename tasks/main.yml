@@ -3,6 +3,14 @@
   fail: msg="OS is not supported"
   when: ansible_os_family != 'RedHat'
 
+- include: user.yml
+
+- name: Determine if confluence is already installed
+  stat: path={{ confluence_install_dir }}/{{ confluence_version }}
+  register: install_path
+
 - include: install.yml
+  when: install_path.stat.isdir is not defined
+
 - include: config.yml
 - include: service.yml
