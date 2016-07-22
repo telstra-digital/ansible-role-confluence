@@ -46,5 +46,5 @@ def test_service_listening(Socket):
 
 
 def test_java_package_version(Package):
-    package = Package('jdk1.80_101')
+    package = Package('jdk1.8.0_101')
     assert package.is_installed
