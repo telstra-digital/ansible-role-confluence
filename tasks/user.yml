@@ -13,3 +13,5 @@
     group: "{{ confluence_group }}"
     comment: "Confluence User"
     shell: /sbin/nologin
+    home: "{{ atlassian_data_dir }}/confluence"
+    createhome: no

@@ -33,9 +33,13 @@
     group: "{{ confluence_group }}"
     recurse: True
 
+# create this independently first, so it's not owned by the confluence user
+- name: install > create atlassian home directory
+  file: path="{{ atlassian_data_dir }}" state=directory
+
 - name: install > create confluence home directory
   file:
-    path: "{{ confluence_home }}"
+    path: "{{ atlassian_data_dir }}/confluence"
     state: directory
     owner: "{{ confluence_user }}"
     group: "{{ confluence_group }}"
