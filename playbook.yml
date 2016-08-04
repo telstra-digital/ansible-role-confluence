@@ -1,65 +1,27 @@
 ---
 - hosts: confluence
   become: true
+
   pre_tasks:
-    # Disable SELinux
-    - command: 'setenforce 0'
-    # Install packages for testing which don't exist in the Vagrant box
-    - yum: name={{ item }} state=present
+    - name: install packages for molecule testing
+      yum: name={{ item }} state=present
       with_items:
         - libselinux-python
         - net-tools
 
+    - name: disable selinux during testing
+      selinux: policy=targeted state=permissive
+
   roles:
-    - role: galaxyprojectdotorg.postgresql
     - role: williamyeh.oracle-java
-    - { role: uoi-io.haproxy, tags: ['haproxy'] }
     - role: ansible-role-confluence
-
-  tasks:
-    - yum: name=python-psycopg2 state=present
-
-    - name: creating db user '{{ confluence_db_user }}'
-      postgresql_user:
-        name: "{{ confluence_db_user }}"
-        password: "{{ confluence_db_pass }}"
-        encrypted: yes
-      become_user: postgres
-
-    - name: creating db '{{ confluence_db }}'
-      postgresql_db:
-        name: "{{ confluence_db }}"
-        owner: "{{ confluence_db_user }}"
-      become_user: postgres
 
   vars:
     java_version: 8
     java_subversion: 101
-    # NOTE: For speedy testing, download jdk-8u92-linux-x64.rpm to files/
-    java_download_from_oracle: false
-    confluence_db: "confluence"
-    confluence_db_user: "confluence"
-    confluence_db_pass: "confluencepass"
-    confluence_manage_service: true
-    postgresql_pg_hba_local_ipv4: ''
-    postgresql_pg_hba_local_ipv6: ''
-    postgresql_pg_hba_conf:
-      - 'host    all             all             127.0.0.1/32            md5'
-      - 'host    all             all             ::1/128                 md5'
-    haproxy_firewalld: false
-    haproxy_selinux: false
-    haproxy_stats_uri: /haproxy?stats
-    haproxy_stats_user: "admin"
-    haproxy_stats_password: "admin"
-    haproxy_listen:
-      - confluence:
-          mode: http
-          description: Confluence Wiki
-          balance: roundrobin
-          binds:
-            - "*:80"
-          timeouts:
-            - server 2m
-            - client 2m
-          servers:
-          - confluence 127.0.0.1:8090 check
+    # NOTE: speedy testing, download jdk RPM to files/ and change this to false
+    java_download_from_oracle: true
+
+    # NOTE: speedy testing, download confluence tar.gz to files/ and change
+    # this to false
+    confluence_download_from_atlassian: true

@@ -1,8 +1,9 @@
 ---
 ansible:
   playbook: playbook.yml
+  # playbook: playbook-full.yml
   requirements_file: requirements.yml
-#  verbose: vvvv
+  # verbose: vvvv
 
 vagrant:
   raw_config_args:
