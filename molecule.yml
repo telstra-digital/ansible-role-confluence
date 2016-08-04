@@ -2,12 +2,14 @@
 ansible:
   playbook: playbook.yml
   requirements_file: requirements.yml
+#  verbose: vvvv
 
 vagrant:
   raw_config_args:
     - "proxy.http = 'http://172.28.128.1:3128/'"
     - "proxy.https = 'http://172.28.128.1:3128/'"
     - "proxy.no_proxy = '172.28.128.1'"
+    - "vm.network 'forwarded_port', guest: 8090, host: 8090"
     - "vm.synced_folder '.', '/home/vagrant/sync', disabled: true"
 
   platforms:
