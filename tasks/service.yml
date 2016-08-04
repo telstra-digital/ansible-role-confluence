@@ -1,3 +1,4 @@
 ---
-- service: name=confluence state=started enabled=yes
+- name: service > ensure confluence service is started
+  service: name=confluence state=started enabled=yes
   when: confluence_manage_service
