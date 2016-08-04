@@ -8,6 +8,7 @@ vagrant:
     - "proxy.http = 'http://172.28.128.1:3128/'"
     - "proxy.https = 'http://172.28.128.1:3128/'"
     - "proxy.no_proxy = '172.28.128.1'"
+    - "vm.synced_folder '.', '/home/vagrant/sync', disabled: true"
 
   platforms:
     - name: centos/7
