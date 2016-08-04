@@ -1,8 +1,15 @@
 ---
-- name: install > download confluence
+- name: install > download confluence archive from atlassian
   get_url:
     url: "{{ confluence_download_base }}/atlassian-confluence-{{ confluence_version }}.tar.gz"
     dest: /var/tmp/atlassian-confluence-{{ confluence_version }}.tar.gz
+  when: confluence_download_from_atlassian
+
+- name: install > copy confluence archive from control machine
+  copy:
+    src: atlassian-confluence-{{ confluence_version }}.tar.gz
+    dest: /var/tmp/atlassian-confluence-{{ confluence_version }}.tar.gz
+  when: not confluence_download_from_atlassian
 
 - name: install > create confluence directory
   file:
@@ -10,9 +17,11 @@
     state: directory
     mode: 0755
 
-# NOTE: This uses tar directly so that we can strip the leading path
+# NOTE: This uses tar directly for two reasons
+# The tar.gz archive seems to be incompatible with Python's tarfile
+# Ansible bug: https://github.com/ansible/ansible-modules-core/pull/4131
 - name: extract confluence archive
-  command: tar --strip-components=1 -zxvf /var/tmp/atlassian-confluence-{{ confluence_version }}.tar.gz
+  command: tar --strip-components=1 -zxf /var/tmp/atlassian-confluence-{{ confluence_version }}.tar.gz
   args:
     chdir: "{{ confluence_install_dir }}/{{ confluence_version }}"
     creates: "{{ confluence_install_dir }}/{{ confluence_version }}/LICENSE"

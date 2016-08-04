@@ -8,3 +8,4 @@ confluence_group: confluence
 confluence_uid: 33000
 confluence_gid: 33000
 confluence_manage_service: true
+confluence_download_from_atlassian: false
