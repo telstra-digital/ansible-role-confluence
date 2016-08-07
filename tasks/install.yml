@@ -1,15 +1,15 @@
 ---
-- name: install > download confluence archive from atlassian
+- name: install > download confluence archive from remote
   get_url:
     url: "{{ confluence_download_base }}/atlassian-confluence-{{ confluence_version }}.tar.gz"
     dest: /var/tmp/atlassian-confluence-{{ confluence_version }}.tar.gz
-  when: confluence_download_from_atlassian
+  when: confluence_download_from_remote
 
 - name: install > copy confluence archive from control machine
   copy:
     src: atlassian-confluence-{{ confluence_version }}.tar.gz
     dest: /var/tmp/atlassian-confluence-{{ confluence_version }}.tar.gz
-  when: not confluence_download_from_atlassian
+  when: not confluence_download_from_remote
 
 - name: install > create confluence directory
   file:

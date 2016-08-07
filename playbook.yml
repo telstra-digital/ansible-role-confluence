@@ -24,4 +24,4 @@
 
     # NOTE: speedy testing, download confluence tar.gz to files/ and change
     # this to false
-    confluence_download_from_atlassian: true
+    confluence_download_from_remote: true
