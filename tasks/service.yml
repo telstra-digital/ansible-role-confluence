@@ -1,4 +1,4 @@
 ---
 - name: service > ensure confluence service is started
-  service: name=confluence state=started enabled=yes
+  service: name=confluence state=started enabled=yes daemon_reload=yes
   when: confluence_manage_service
