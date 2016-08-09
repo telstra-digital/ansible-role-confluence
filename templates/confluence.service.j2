@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=forking
-User=confluence
+User={{ confluence_user }}
 PIDFile=/opt/atlassian/confluence/{{ confluence_version }}/work/catalina.pid
 EnvironmentFile=-/etc/sysconfig/confluence
 ExecStart=/opt/atlassian/confluence/{{ confluence_version }}/bin/start-confluence.sh
