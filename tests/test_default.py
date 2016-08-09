@@ -48,3 +48,13 @@ def test_service_listening(Socket):
 def test_java_package_version(Package):
     package = Package('jdk1.8.0_101')
     assert package.is_installed
+
+
+def test_jvm_memory_change_applied(File):
+    envfile = File('/opt/atlassian/confluence/5.9.12/bin/setenv.sh')
+    assert envfile.contains('-Xms1536m -Xmx1536m')
+
+
+def test_extra_catalina_options_applied(File):
+    envfile = File('/opt/atlassian/confluence/5.9.12/bin/setenv.sh')
+    assert envfile.contains('-Dtest.success=true')

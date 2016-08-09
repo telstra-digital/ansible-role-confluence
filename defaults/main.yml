@@ -10,3 +10,6 @@ confluence_uid: 33000
 confluence_gid: 33000
 confluence_manage_service: true
 confluence_download_from_remote: true
+confluence_jvm_min_mem: "1024m"
+confluence_jvm_max_mem: "1024m"
+confluence_extra_catalina_options: false

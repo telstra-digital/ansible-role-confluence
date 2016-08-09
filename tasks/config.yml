@@ -15,6 +15,14 @@
     group: "{{ confluence_group }}"
     mode:  0444
 
+- name: config > setenv.sh
+  template:
+    src:   setenv.sh.j2
+    dest:  "{{ confluence_install_dir }}/{{ confluence_version }}/bin/setenv.sh"
+    owner: "{{ confluence_user }}"
+    group: "{{ confluence_group }}"
+    mode:  0444
+
 - name: config > systemd directory
   file: path=/etc/systemd/system state=directory
 

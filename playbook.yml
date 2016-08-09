@@ -25,3 +25,6 @@
     # NOTE: speedy testing, download confluence tar.gz to files/ and change
     # this to false
     confluence_download_from_remote: true
+    confluence_jvm_min_mem: "1536m"
+    confluence_jvm_max_mem: "1536m"
+    confluence_extra_catalina_options: "-Dtest.success=true"

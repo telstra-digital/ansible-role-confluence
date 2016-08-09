@@ -48,6 +48,9 @@
     confluence_db: "confluence"
     confluence_db_user: "confluence"
     confluence_db_pass: "confluencepass"
+    confluence_jvm_min_mem: "1536m"
+    confluence_jvm_max_mem: "1536m"
+    confluence_extra_catalina_options: "-Dtest.success=true"
 
     postgresql_pg_hba_local_ipv4: ''
     postgresql_pg_hba_local_ipv6: ''
