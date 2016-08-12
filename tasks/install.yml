@@ -43,3 +43,8 @@
     state: directory
     owner: "{{ confluence_user }}"
     group: "{{ confluence_group }}"
+
+- name: cleanup atlassian archive
+  file:
+    path: /var/tmp/atlassian-confluence-{{ confluence_version }}.tar.gz
+    state: absent
