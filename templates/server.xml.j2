@@ -3,7 +3,17 @@
         <Connector port="8090" connectionTimeout="20000" redirectPort="8443"
                 maxThreads="200" minSpareThreads="10"
                 enableLookups="false" acceptCount="10" debug="0" URIEncoding="UTF-8"
-                protocol="org.apache.coyote.http11.Http11NioProtocol" />
+                protocol="org.apache.coyote.http11.Http11NioProtocol"
+{% if confluence_proxy_name %}
+                proxyName="{{ confluence_proxy_name }}"
+{% endif %}
+{% if confluence_proxy_port %}
+                proxyPort="{{ confluence_proxy_port }}"
+{% endif %}
+{% if confluence_proxy_scheme %}
+                scheme="{{ confluence_proxy_scheme }}"
+{% endif %}
+                />
 
         <Engine name="Standalone" defaultHost="localhost" debug="0">
 

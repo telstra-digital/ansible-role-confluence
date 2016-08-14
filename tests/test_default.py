@@ -58,3 +58,10 @@ def test_jvm_memory_change_applied(File):
 def test_extra_catalina_options_applied(File):
     envfile = File('/opt/atlassian/confluence/5.9.12/bin/setenv.sh')
     assert envfile.contains('-Dtest.success=true')
+
+
+def test_tomcat_connector_configured(File):
+    serverxml = File('/opt/atlassian/confluence/5.9.12/conf/server.xml')
+    assert serverxml.contains('proxyName="localhost"')
+    assert serverxml.contains('proxyPort="8090"')
+    assert serverxml.contains('scheme="http"')
