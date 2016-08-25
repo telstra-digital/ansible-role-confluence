@@ -55,9 +55,10 @@ def test_jvm_memory_change_applied(File):
     assert envfile.contains('-Xms1536m -Xmx1536m')
 
 
-def test_extra_catalina_options_applied(File):
+def test_jvm_custom_options_applied(File):
     envfile = File('/opt/atlassian/confluence/5.9.12/bin/setenv.sh')
     assert envfile.contains('-Dtest.success=true')
+    assert envfile.contains('-Dtest.extra.success=true')
 
 
 def test_tomcat_connector_configured(File):

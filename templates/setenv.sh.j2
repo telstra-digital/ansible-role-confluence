@@ -42,8 +42,11 @@ CATALINA_OPTS="-Xloggc:$LOGBASEABS/logs/gc-`date +%F_%H-%M-%S`.log -XX:+UseGCLog
 CATALINA_OPTS="-Djava.awt.headless=true ${CATALINA_OPTS}"
 CATALINA_OPTS="-Datlassian.plugins.enable.wait=300 ${CATALINA_OPTS}"
 CATALINA_OPTS="-Xms{{ confluence_jvm_min_mem }} -Xmx{{ confluence_jvm_max_mem }} -XX:+UseG1GC ${CATALINA_OPTS}"
-{% if confluence_extra_catalina_options %}
-CATALINA_OPTS="{{ confluence_extra_catalina_options }} ${CATALINA_OPTS}"
+{% if confluence_jvm_custom_options %}
+CATALINA_OPTS="{{ confluence_jvm_custom_options | join(" ") }} ${CATALINA_OPTS}"
+{% endif %}
+{% if confluence_jvm_custom_options_extra %}
+CATALINA_OPTS="{{ confluence_jvm_custom_options_extra | join(" ") }} ${CATALINA_OPTS}"
 {% endif %}
 
 

@@ -12,7 +12,8 @@ confluence_manage_service: true
 confluence_download_from_remote: true
 confluence_jvm_min_mem: "1024m"
 confluence_jvm_max_mem: "1024m"
-confluence_extra_catalina_options: false
+confluence_jvm_custom_options: []
+confluence_jvm_custom_options_extra: []
 confluence_proxy_name: false
 confluence_proxy_port: false
 confluence_proxy_scheme: false

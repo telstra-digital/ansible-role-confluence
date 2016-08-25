@@ -24,10 +24,14 @@
 
     # NOTE: speedy testing, download confluence tar.gz to files/ and change
     # this to false
+    confluence_download_base: http://repo1.ae.sda.corp.telstra.com/nexus/content/repositories/thirdparty/com/atlassian/confluence/atlassian-confluence/5.9.12/
     confluence_download_from_remote: true
     confluence_jvm_min_mem: "1536m"
     confluence_jvm_max_mem: "1536m"
-    confluence_extra_catalina_options: "-Dtest.success=true"
+    confluence_jvm_custom_options:
+      - "-Dtest.success=true"
+    confluence_jvm_custom_options_extra:
+      - "-Dtest.extra.success=true"
     confluence_proxy_name: localhost
     confluence_proxy_port: 8090
     confluence_proxy_scheme: http
