@@ -4,6 +4,9 @@
                 maxThreads="200" minSpareThreads="10"
                 enableLookups="false" acceptCount="10" debug="0" URIEncoding="UTF-8"
                 protocol="org.apache.coyote.http11.Http11NioProtocol"
+{% if confluence_listen_address %}
+                address="{{ confluence_listen_address }}"
+{% endif %}
 {% if confluence_proxy_name %}
                 proxyName="{{ confluence_proxy_name }}"
 {% endif %}
@@ -12,6 +15,9 @@
 {% endif %}
 {% if confluence_proxy_scheme %}
                 scheme="{{ confluence_proxy_scheme }}"
+{% endif %}
+{% if confluence_proxy_scheme == "https" %}
+                secure="true"
 {% endif %}
                 />
 

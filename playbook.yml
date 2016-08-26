@@ -35,3 +35,4 @@
     confluence_proxy_name: localhost
     confluence_proxy_port: 8090
     confluence_proxy_scheme: http
+    confluence_listen_address: 127.0.0.1

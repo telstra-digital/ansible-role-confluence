@@ -40,8 +40,13 @@ def test_service_running(Service):
     assert service.is_enabled
 
 
-def test_service_listening(Socket):
+def test_service_not_listening_on_all(Socket):
     socket = Socket('tcp://:::8090')
+    assert socket.is_listening is False
+
+
+def test_service_listening(Socket):
+    socket = Socket('tcp://127.0.0.1:8090')
     assert socket.is_listening
 
 

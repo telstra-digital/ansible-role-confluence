@@ -17,3 +17,4 @@ confluence_jvm_custom_options_extra: []
 confluence_proxy_name: false
 confluence_proxy_port: false
 confluence_proxy_scheme: false
+confluence_listen_address: "0.0.0.0"
